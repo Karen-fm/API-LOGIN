@@ -16,6 +16,20 @@ Esta é uma API REST de estudo para login de usuários em um ecommerce, com func
 - Mocha, Chai, Supertest (testes)
 - Swagger (documentação)
 
+## Instalação
+
+Após clonar o repositório, instale as dependências do projeto rodando o comando abaixo na raiz do projeto:
+
+```bash
+npm install
+```
+
+Isso irá criar a pasta `node_modules` localmente com todas as bibliotecas necessárias, conforme especificado no `package.json`.
+
+> **Atenção:**  
+> A pasta `node_modules` não está no repositório, pois está listada no `.gitignore`.  
+> Por isso, sempre rode `npm install` após clonar o projeto.
+
 ## Como rodar
 
 1. Instale as dependências:
