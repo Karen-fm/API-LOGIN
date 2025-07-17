@@ -56,7 +56,7 @@ npx mocha test/login.test.js
 
 ## Funcionamento do bloqueio automático
 
-Ao tentar fazer login três vezes com senha errada no endpoint `/login`, o usuário será automaticamente bloqueado. Após o bloqueio, qualquer tentativa de login retornará status 423 (Usuário bloqueado).
+Ao tentar fazer login três vezes com senha errada no endpoint `/login`, o usuário será automaticamente bloqueado. Após o bloqueio, qualquer tentativa de login retornará status 403 (Usuário bloqueado).
 
 ## Exemplos de uso
 
