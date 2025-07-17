@@ -54,7 +54,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *         description: Login realizado com sucesso
  *       401:
  *         description: Usuário ou senha inválidos
- *       423:
+ *       403:
  *         description: Usuário bloqueado
  */
 app.post("/login", (req, res) => {
@@ -63,7 +63,7 @@ app.post("/login", (req, res) => {
   if (!user)
     return res.status(401).json({ message: "Usuário ou senha inválidos" });
   if (user.blocked)
-    return res.status(423).json({ message: "Usuário bloqueado" });
+    return res.status(403).json({ message: "Usuário bloqueado" });
   if (user.password === password) {
     user.attempts = 0;
     return res.status(200).json({ message: "Login realizado com sucesso" });
@@ -71,7 +71,7 @@ app.post("/login", (req, res) => {
     user.attempts++;
     if (user.attempts >= 3) {
       user.blocked = true;
-      return res.status(423).json({ message: "Usuário bloqueado" });
+      return res.status(403).json({ message: "Usuário bloqueado" });
     }
     return res.status(401).json({ message: "Usuário ou senha inválidos" });
   }

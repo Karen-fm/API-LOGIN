@@ -14,7 +14,7 @@ describe("Login - Bloqueio após 3 tentativas", function () {
     const res = await request(app)
       .post("/login")
       .send({ username: "user1", password: "errada" });
-    expect(res.status).to.equal(423);
+    expect(res.status).to.equal(403);
     expect(res.body.message).to.equal("Usuário bloqueado");
   });
 });
