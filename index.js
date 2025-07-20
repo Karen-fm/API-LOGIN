@@ -15,6 +15,13 @@ const users = [
     attempts: 0,
     blocked: false,
   },
+   {
+    username: "userSucess",
+    password: "senha123",
+    email: "user1@email.com",
+    attempts: 0,
+    blocked: false,
+  },
 ];
 
 // Swagger config
