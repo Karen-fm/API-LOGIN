@@ -1,6 +1,6 @@
-# API de Login para Ecommerce
+# API REST de Login
 
-Esta é uma API REST de estudo para login de usuários em um ecommerce, com funcionalidades de bloqueio automático após 3 tentativas inválidas e lembrar senha. Não utiliza banco de dados, apenas armazenamento em memória.
+Esta é uma API REST de estudo para autenticação de usuários, incluindo login, bloqueio automático após 3 tentativas inválidas e lembrete de senha por e-mail. Não utiliza banco de dados, apenas armazenamento em memória.
 
 ## Funcionalidades
 
@@ -13,8 +13,13 @@ Esta é uma API REST de estudo para login de usuários em um ecommerce, com func
 
 - Node.js
 - Express
+- body-parser
 - Mocha, Chai, Supertest (testes)
-- Swagger (documentação)
+- Swagger (documentação interativa)
+
+## Pré-requisitos
+
+- [Node.js](https://nodejs.org/) (recomendado: versão 18.x ou superior; o npm já vem incluso)
 
 ## Instalação
 
@@ -30,24 +35,45 @@ Isso irá criar a pasta `node_modules` localmente com todas as bibliotecas neces
 > A pasta `node_modules` não está no repositório, pois está listada no `.gitignore`.  
 > Por isso, sempre rode `npm install` após clonar o projeto.
 
-## Como rodar
+## Como rodar a API
 
 1. Instale as dependências:
-   ```bash
-   npm install
-   ```
-2. Inicie a API:
-   ```bash
-   node index.js
-   ```
-3. Acesse a documentação Swagger:
-   [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
-
-## Como rodar os testes
 
 ```bash
-npx mocha test/login.test.js
+npm install
 ```
+
+2. Inicie a API:
+
+```bash
+node index.js
+```
+
+3. Acesse a documentação Swagger:
+   [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+   > Por padrão, a API roda na porta **3000**. Se desejar alterar a porta, modifique o arquivo `index.js`.
+
+## Como rodar os testes automatizados
+
+**Para rodar todos os testes:**
+
+```bash
+npx mocha test/api/*.test.js
+```
+
+**Para rodar um teste específico:**
+
+```bash
+npx mocha test/api/nome-do-arquivo.test.js
+```
+
+> Exemplo:
+>
+> ```bash
+> npx mocha test/api/login-sucesso.test.js
+> ```
+>
+> Os testes automatizados estão localizados na pasta `test/api/`.
 
 ## Observações
 
@@ -56,7 +82,7 @@ npx mocha test/login.test.js
 
 ## Funcionamento do bloqueio automático
 
-Ao tentar fazer login três vezes com senha errada no endpoint `/login`, o usuário será automaticamente bloqueado. Após o bloqueio, qualquer tentativa de login retornará status 403 (Usuário bloqueado).
+Ao tentar fazer login três vezes com senha errada no endpoint `/login`, o usuário será automaticamente bloqueado. Após o bloqueio, qualquer tentativa de login retornará status 403 (Usuário bloqueado). O desbloqueio do usuário só ocorre ao reiniciar o servidor, pois todos os dados são armazenados em memória.
 
 ## Exemplos de uso
 
@@ -147,3 +173,5 @@ Content-Type: application/json
   "message": "Lembrete de senha enviado para o email"
 }
 ```
+
+> Observação: O endpoint `/lembrar-senha` apenas simula o envio do lembrete de senha. Não há envio real de e-mail.

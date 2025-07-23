@@ -22,9 +22,9 @@ const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      title: "API de Login - Ecommerce",
+      title: "API REST de Login",
       version: "1.0.0",
-      description: "API de estudo para login, bloqueio e lembrar senha.",
+      description: "API REST de estudo para login, bloqueio e lembrar senha.",
     },
     servers: [{ url: "http://localhost:3000" }],
   },
