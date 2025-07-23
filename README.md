@@ -77,13 +77,19 @@ npx mocha test/api/nome-do-arquivo.test.js
 
 ## Autores
 
-**Adriana** - Testes de login com sucesso
-**Bruno Reis** - Testes de lembrar senha
-**Diego Santos** - Testes de validação de campos obrigatórios
-**Karen Machado** - Testes de bloqueio automático
-**Viviane Prestes** - Testes de login inválido
+**Adriana** - Testes de login com sucesso.
 
-## Testes e Responsáveis
+**Bruno Reis** - Testes de lembrar senha.
+
+**Diego Santos** - Testes de validação de campos obrigatórios.
+
+**Karen Machado** - Testes de bloqueio automático.
+
+**Viviane Prestes** - Testes de login inválido.
+
+
+
+## Testes e Cobertura
 
 | Teste                               | Responsável     | Cobertura                                             |
 | ----------------------------------- | --------------- | ----------------------------------------------------- |
