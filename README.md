@@ -75,6 +75,24 @@ npx mocha test/api/nome-do-arquivo.test.js
 >
 > Os testes automatizados estão localizados na pasta `test/api/`.
 
+## Autores
+
+**Adriana** - Testes de login com sucesso
+**Bruno Reis** - Testes de lembrar senha
+**Diego Santos** - Testes de validação de campos obrigatórios
+**Karen Machado** - Testes de bloqueio automático
+**Viviane Prestes** - Testes de login inválido
+
+## Testes e Responsáveis
+
+| Teste                               | Responsável     | Cobertura                                             |
+| ----------------------------------- | --------------- | ----------------------------------------------------- |
+| `login-sucesso.test.js`             | Adriana         | Testa login com credenciais válidas                   |
+| `lembrar-senha.test.js`             | Bruno           | Testa funcionalidade de lembrar senha por email       |
+| `login-campos-obrigatorios.test.js` | Diego           | Testa validação de campos obrigatórios                |
+| `bloqueio-tres-tentativas.test.js`  | Karen           | Testa bloqueio automático após 3 tentativas inválidas |
+| `login-invalido.test.js`            | Viviane Prestes | Testa cenários de falha no login                      |
+
 ## Observações
 
 - Usuário de exemplo: `user1` / senha: `senha123` / email: `user1@email.com`
@@ -175,3 +193,7 @@ Content-Type: application/json
 ```
 
 > Observação: O endpoint `/lembrar-senha` apenas simula o envio do lembrete de senha. Não há envio real de e-mail.
+
+## Licença
+
+Este projeto está sob a licença MIT.
