@@ -106,7 +106,9 @@ npx mocha test/api/nome-do-arquivo.test.js
 
 ## Funcionamento do bloqueio automático
 
-Ao tentar fazer login três vezes com senha errada no endpoint `/login`, o usuário será automaticamente bloqueado. Após o bloqueio, qualquer tentativa de login retornará status 403 (Usuário bloqueado). O desbloqueio do usuário só ocorre ao reiniciar o servidor, pois todos os dados são armazenados em memória.
+Ao tentar fazer login três vezes com usuário ou senha inválidos no endpoint `/login`, o usuário será automaticamente bloqueado. Após o bloqueio, qualquer tentativa de login retornará status 403 (Usuário bloqueado). O desbloqueio do usuário só ocorre ao reiniciar o servidor, pois todos os dados são armazenados em memória.
+
+**Nota:** O sistema conta tentativas tanto para usuários que existem (com senha errada) quanto para usuários que não existem, garantindo proteção contra ataques de força bruta e enumeração de usuários.
 
 ## Exemplos de uso
 
