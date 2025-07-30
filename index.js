@@ -6,6 +6,18 @@ import swaggerJsdoc from "swagger-jsdoc";
 const app = express();
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (req.method === "OPTIONS") {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
+
 // Dados em memória
 const users = [
   {
@@ -16,6 +28,9 @@ const users = [
     blocked: false,
   },
 ];
+
+// Contador global de tentativas inválidas
+let globalInvalidAttempts = 0;
 
 // Swagger config
 const swaggerOptions = {
@@ -60,21 +75,22 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   const user = users.find((u) => u.username === username);
-  if (!user)
-    return res.status(401).json({ message: "Usuário ou senha inválidos" });
-  if (user.blocked)
-    return res.status(403).json({ message: "Usuário bloqueado" });
-  if (user.password === password) {
-    user.attempts = 0;
-    return res.status(200).json({ message: "Login realizado com sucesso" });
-  } else {
-    user.attempts++;
-    if (user.attempts >= 3) {
-      user.blocked = true;
+
+  // Se login é inválido (usuário não existe OU senha errada)
+  if (!user || (user && user.password !== password)) {
+    globalInvalidAttempts++;
+
+    if (globalInvalidAttempts >= 3) {
       return res.status(403).json({ message: "Usuário bloqueado" });
     }
+
     return res.status(401).json({ message: "Usuário ou senha inválidos" });
   }
+
+  // Login correto
+  if (user.blocked) user.blocked = false;
+  user.attempts = 0;
+  return res.status(200).json({ message: "Login realizado com sucesso" });
 });
 
 /**
